@@ -14,12 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view( 'welcome' );
-});
+	$tasks = [
+		[ 'name' => 'Task 1' ],
+		[ 'name' => 'Task 2' ],
+		[ 'name' => 'Task 3' ],
+	];
+	return view( 'home', [
+		'body'         => 'Hello Quang Tuyên',
+		'name'         => '<span style="color:red">Vô Song</span>',
+		'alertMessage' => 'Thông báo',
+		'tasks'        => $tasks,
+	] );
+})->name( 'home' );
 
-Route::get( 'welcome', function () {
-	return 'Hello word';
-});
+Route::get( 'about', function () {
+	return view( 'about.aboutUs', [ 'about' => 'Giới Thiệu' ] );
+})->name( 'about' );
 
 Route::get( 'user/{id}', function( $id ) {
 	return "ID user: $id";
